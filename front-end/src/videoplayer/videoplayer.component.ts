@@ -12,10 +12,22 @@ export class VideoPlayerComponent {
   @ViewChild("videoPlayer", { static: false }) videoplayer: ElementRef;
   isPlay: boolean = false;
 
+
   ngOnInit(){
-    let url = "https://dash.akamaized.net/envivio/Envivio-dash2/manifest.mpd";
+    let url = "http://localhost:9428/api/manifests/";
     let player = MediaPlayer().create();
     player.initialize(document.querySelector('#myMainVideoPlayer'), url, true);
+    player.updateSettings({
+      streaming:
+      {
+          liveDelay: 2,
+          liveCatchup: {
+            minDrift: 0.05,
+            playbackRate: 0.5,
+            latencyThreshold: 30,    
+        }
+      }
+  });
   }
   toggleVideo() {
     this.videoplayer.nativeElement.play();
