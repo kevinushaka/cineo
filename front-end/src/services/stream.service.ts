@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
-import {Stream } from '../models/stream.model'
-import { BehaviorSubject, Subject } from 'rxjs';
-import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import {Stream, User } from '../models/stream.model'
+import { Subject } from 'rxjs';
+import { serverUrl } from '../configs/server.config';
 @Injectable({
   providedIn: 'root'
 })
-export class VideoLoaderService {
+export class StreamService {
 
-  private streams: Stream[];
-
+  public streams$: Subject<Stream[]> = new Subject();
   public streamSelected$: Subject<Stream> = new Subject();
 
   private streamsUrl = serverUrl + '/streams';
-
-  private httpOptions = httpOptionsBase;
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +19,11 @@ export class VideoLoaderService {
     const urlWithId = this.streamsUrl + '/' + streamId;
     this.http.get<Stream>(urlWithId).subscribe((stream) => {
       this.streamSelected$.next(stream);
+    });
+  }
+  setStreams(){
+    this.http.get<Stream[]>(this.streamsUrl ).subscribe((streams) => {
+      this.streams$.next(streams);
     });
   }
 }

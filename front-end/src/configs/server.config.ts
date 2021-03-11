@@ -2,7 +2,8 @@ import { HttpHeaders } from '@angular/common/http';
 
 export const httpOptionsBase = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'x-access-token':''
   })
 };
 

@@ -6,9 +6,13 @@ export enum StreamStatus {
     SEEKING
   }
   
+  export interface User{
+    username:string,
+  }
   export interface Stream {
     src:   string,
-    title: string
+    title: string,
+    user:User
   }
 
   export interface StreamList {

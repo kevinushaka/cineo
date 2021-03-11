@@ -1,14 +1,14 @@
 module.exports = (sequelize, Sequelize) => {
-    const Stream = sequelize.define("streams", {
-      name: {
+    const User = sequelize.define("users", {
+      username: {
         type: Sequelize.STRING
       },
-      src: {
+      password: {
         type: Sequelize.STRING
       }
     }, {
       timestamps: false
   });
   
-    return Stream;
+    return User;
   };

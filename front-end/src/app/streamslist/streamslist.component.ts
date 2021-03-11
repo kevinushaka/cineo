@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Stream} from './../../models/stream.model'
+import {StreamService} from './../../services/stream.service'
 @Component({
   selector: 'app-streamslist',
   templateUrl: './streamslist.component.html',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StreamsListComponent implements OnInit {
 
-  constructor() { }
+  public streams: Stream[];
+  constructor(private streamService:StreamService) {
+
+    this.streamService.streams$.subscribe((streams)=>{
+      this.streams=streams;
+    })
+   }
 
   ngOnInit(): void {
+    
   }
 
 }

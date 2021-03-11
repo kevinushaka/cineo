@@ -1,11 +1,7 @@
  <!-- Main jumbotron for a primary marketing message or call to action -->
- <div class="jumbotron">
-    <div class="container">
-      <h1>Hello, friend!</h1>
-      <p>This is a web site for watching live streaming movies with people.</p>
-      <p><a class="btn btn-primary btn-lg" role="button" routerLink="/addstream" routerLinkActive="active">Create session</a></p>
-    </div>
-  </div>
+ <app-header></app-header>
 
-
-    <hr>
+ <div class="form-center">
+<router-outlet></router-outlet>
+</div>
+  <app-footer></app-footer>
